@@ -52,5 +52,7 @@ public class MainActivity extends Activity {
                 Toast.makeText(getApplicationContext(), "False Pressed", Toast.LENGTH_SHORT).show();
             }
         });
+
+        TrueFalse exampleQuestion = new TrueFalse(R.string.question_1, true);
     }
 }
