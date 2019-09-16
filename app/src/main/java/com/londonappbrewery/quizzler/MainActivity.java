@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends Activity {
 
@@ -15,6 +18,9 @@ public class MainActivity extends Activity {
     // TODO: Declare member variables here:
     Button mTrueButton;
     Button mFalseButton;
+    TextView mQuestionTextView;
+    int mIndex;
+    int mQuestion;
     // TODO: Uncomment to create question bank
     private TrueFalse[] mQuestionBank = new TrueFalse[] {
             new TrueFalse(R.string.question_1, true),
@@ -39,6 +45,11 @@ public class MainActivity extends Activity {
 
         mTrueButton = (Button) findViewById(R.id.true_button);
         mFalseButton = (Button) findViewById(R.id.false_button);
+        mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
+        mQuestionTextView.setText("Birds are dinusaures");
+
+        mQuestion = mQuestionBank[mIndex].getQuestionID();
+        mQuestionTextView.setText(mQuestion);
 
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
