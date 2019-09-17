@@ -53,12 +53,24 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(savedInstanceState != null){
+            mScore = savedInstanceState.getInt("ScoreKey");
+            mIndex = savedInstanceState.getInt("IndexKey");
+        }else{
+            mScore = 0;
+            mIndex = 0;
+        }
+
         mTrueButton = (Button) findViewById(R.id.true_button);
         mFalseButton = (Button) findViewById(R.id.false_button);
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
         mScoreTextView = (TextView) findViewById(R.id.score);
-        mQuestionTextView.setText("Birds are dinusaures");
+
+        // If I do this in else block
+        // mTextView will be null there
+        // which will throw an error and stop the app
+        mScoreTextView.setText("Score " + mScore + "/" + mQuestionBank.length);
 
         mQuestion = mQuestionBank[mIndex].getQuestionID();
         mQuestionTextView.setText(mQuestion);
@@ -114,5 +126,13 @@ public class MainActivity extends Activity {
             Toast.makeText(getApplicationContext(), R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    // To save data for rotate app
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putInt("ScoreKey", mScore);
+        outState.putInt("IndexKey", mIndex);
     }
 }
